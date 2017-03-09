@@ -1,6 +1,0 @@
-<p>出错了！${exceptionMsg}</p>
-<script type="text/javascript">
-    window.onload = function () {
-        alertContent("I'm error page");
-    }
-</script>

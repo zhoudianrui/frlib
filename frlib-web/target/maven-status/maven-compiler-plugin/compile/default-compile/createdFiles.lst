@@ -1,0 +1,14 @@
+io\vicp\frlib\web\mvc\action\BaseController.class
+io\vicp\frlib\web\mvc\listener\ApplicationListener.class
+io\vicp\frlib\web\mvc\handler\MyBeanDefinitionParser.class
+io\vicp\frlib\web\mvc\model\UserInfo.class
+io\vicp\frlib\web\mvc\model\User.class
+io\vicp\frlib\web\mvc\handler\MyNamespaceHandlerSupport.class
+io\vicp\frlib\web\mvc\handler\BusinessExceptionHandler.class
+io\vicp\frlib\web\mvc\action\IndexController.class
+io\vicp\frlib\web\mvc\model\UserStatus.class
+io\vicp\frlib\web\service\BaseService.class
+io\vicp\frlib\web\service\IndexService.class
+io\vicp\frlib\web\mvc\action\LoginController.class
+io\vicp\frlib\web\exception\BusinessException.class
+io\vicp\frlib\web\util\Constants.class

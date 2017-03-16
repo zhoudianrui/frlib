@@ -54,7 +54,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
         <!-- add setter and getter method for java bean lombok end -->
 

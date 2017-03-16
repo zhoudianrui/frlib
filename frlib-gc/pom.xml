@@ -10,19 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>frlib-nio</artifactId>
-    <version>${global.version}</version>
+    <artifactId>frlib-gc</artifactId>
     <packaging>jar</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>io.vicp.frlib</groupId>
-            <artifactId>frlib-util</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-        </dependency>
-    </dependencies>
 
 </project>

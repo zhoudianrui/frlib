@@ -10,8 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>frlib-nio</artifactId>
-    <version>${global.version}</version>
+    <artifactId>frlib-thread</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -20,9 +19,8 @@
             <artifactId>frlib-util</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
-
 </project>

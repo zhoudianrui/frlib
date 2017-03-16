@@ -10,6 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>../frlib-gc</module>
+        <module>../frlib-thread</module>
         <module>../frlib-util</module>
         <module>../frlib-dp</module>
         <module>../frlib-nio</module>
@@ -27,6 +29,7 @@
         <common-fileUpload.version>1.3.2</common-fileUpload.version>
         <common-lang.version>2.4</common-lang.version>
         <common-collection.version>3.2.1</common-collection.version>
+        <netty.version>5.0.0.Alpha2</netty.version>
         <lombok.version>1.16.12</lombok.version>
         <jackson.version>2.8.5</jackson.version>
         <slf4j.version>1.7.12</slf4j.version>
@@ -54,11 +57,12 @@
             <id>central</id>
             <name>Maven Repository Switchboard</name>
             <layout>default</layout>
-            <url>http://repo1.maven.org/maven2</url>
+            <url>http://repo1.maven.org/maven2/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+
     </repositories>
 
     <dependencyManagement>
@@ -113,6 +117,14 @@
                 <version>${common-collection.version}</version>
             </dependency>
             <!-- common fileupload end -->
+
+            <!-- netty start -->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <!-- netty end -->
 
             <!-- add setter and getter method for java bean lombok start -->
             <dependency>

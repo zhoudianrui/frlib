@@ -1,4 +1,10 @@
 io\vicp\frlib\nio\exercise\channel\TimeClient.class
+io\vicp\frlib\nio\netty\TimeClientHandler.class
+io\vicp\frlib\nio\netty\TimeClient.class
 io\vicp\frlib\nio\exercise\channel\TimeClientHandler.class
 io\vicp\frlib\nio\exercise\channel\MultiplexerTimeServer.class
 io\vicp\frlib\nio\exercise\channel\TimeServer.class
+io\vicp\frlib\nio\netty\TimeServer.class
+io\vicp\frlib\nio\netty\TimeServerHandler.class
+io\vicp\frlib\nio\netty\TimeClient$1.class
+io\vicp\frlib\nio\netty\TimeServer$1.class

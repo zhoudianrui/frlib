@@ -14,8 +14,7 @@ public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode tail = null;
         ListNode head = null;
-        ListNode pre = null;
-        ListNode[] headTail = new ListNode[]{head, tail, pre};
+        ListNode[] headTail = new ListNode[]{head, tail};
         while(l1 != null && l2 != null) {
             int tempVal = l1.val + l2.val;
             headTail = put(headTail, tempVal);

@@ -1,0 +1,30 @@
+"Thread-1@476" prio=5 tid=0xf nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	  at io.vicp.frlib.thread.synchronize.Bucket.get(Bucket.java:86)
+	  at io.vicp.frlib.thread.synchronize.Consumer.run(Main.java:59)
+	  at java.lang.Thread.run(Thread.java:745)
+
+"DestroyJavaVM@486" prio=5 tid=0x10 nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"Thread-0@487" prio=5 tid=0xe nid=NA waiting
+  java.lang.Thread.State: WAITING
+	 Incompatible thread state: thread not suspended
+
+"Attach Listener@356" daemon prio=5 tid=0x5 nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"Signal Dispatcher@357" daemon prio=9 tid=0x4 nid=NA runnable
+  java.lang.Thread.State: RUNNABLE
+	 Incompatible thread state: thread not suspended
+
+"Finalizer@358" daemon prio=8 tid=0x3 nid=NA waiting
+  java.lang.Thread.State: WAITING
+	 Incompatible thread state: thread not suspended
+
+"Reference Handler@359" daemon prio=10 tid=0x2 nid=NA waiting
+  java.lang.Thread.State: WAITING
+	 Incompatible thread state: thread not suspended
+

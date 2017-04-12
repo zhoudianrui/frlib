@@ -1,3 +1,5 @@
+package io.vicp.frlib.gc.memory;
+
 /**
  * -XX:+UseSerialGC(client模式下，使用Serial+Serial Old的收集器)
  * -Xms20m(最小堆内存20m)

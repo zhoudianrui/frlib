@@ -13,6 +13,10 @@ public class BinaryTreeNode extends Node{
 
     private boolean isFirst;
 
+    public BinaryTreeNode() {
+
+    }
+
     public BinaryTreeNode(int value) {
         setValue(value);
     }

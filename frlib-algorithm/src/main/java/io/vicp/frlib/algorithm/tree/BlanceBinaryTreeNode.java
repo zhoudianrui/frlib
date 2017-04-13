@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by zhoudr on 2017/4/11.
  */
 @Data
-public class BlanceBinaryTreeNode extends Node {
+public class BlanceBinaryTreeNode extends BinaryTreeNode {
     private BlanceBinaryTreeNode left;
 
     private BlanceBinaryTreeNode right;
@@ -15,6 +15,9 @@ public class BlanceBinaryTreeNode extends Node {
     private int bf;
 
     private int height;
+
+    public BlanceBinaryTreeNode() {
+    }
 
     public BlanceBinaryTreeNode(int value) {
         setValue(value);

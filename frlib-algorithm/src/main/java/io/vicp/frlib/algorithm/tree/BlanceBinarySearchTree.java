@@ -3,7 +3,7 @@ package io.vicp.frlib.algorithm.tree;
 /**
  * Created by zhoudr on 2017/4/11.
  */
-public class BlanceBinarySearchTree extends Node{
+public class BlanceBinarySearchTree{
 
     public BlanceBinaryTreeNode getRoot() {
         return root;
@@ -33,40 +33,30 @@ public class BlanceBinarySearchTree extends Node{
             return node;
         } else if (parent.compare(node) > 0) {
             parent.setLeft(insert(parent.getLeft(), node));
-            reblance(parent);
-            return parent;
         } else {
             parent.setRight(insert(parent.getRight(), node));
-            reblance(parent);
-            return parent;
         }
+        return reblance(parent);
     }
 
-    private void reblance(BlanceBinaryTreeNode node) {
-        /*int bf = node.getBf();
+    private BlanceBinaryTreeNode reblance(BlanceBinaryTreeNode node) {
+        int bf = node.getBf();
         if (bf < -1) {
-            if (unBlanceNode.getLeft().getRight() == node
-                    || unBlanceNode.getLeft().getRight() == node.getParent()) {
-                // 左儿子的右子树添加节点(先左旋后右旋)
-                rotateLeft(unBlanceNode.getLeft());
-                rotateRight(unBlanceNode);
-            } else if (unBlanceNode.getLeft().getLeft() == node
-                    || unBlanceNode.getLeft().getLeft() == node.getParent()) {
-                // 左儿子的左子树添加节点(右旋)
-                rotateRight(unBlanceNode);
+            BlanceBinaryTreeNode leftNode = node.getLeft();
+            if (leftNode.getBf() == 1) { // 左旋
+                node.setLeft(rotateLeft(leftNode));
             }
-        } else if (bf > 1) {
-            if (unBlanceNode.getRight().getLeft() == node
-                    || unBlanceNode.getRight().getLeft() == node.getParent()) {
-                // 右儿子的左子树添加节点(先右旋后左旋)
-                rotateRight(unBlanceNode.getRight());
-                rotateLeft(unBlanceNode);
-            }else if (unBlanceNode.getRight().getRight() == node
-                    || unBlanceNode.getRight().getRight() == node.getParent()) {
-                // 右儿子的右子树添加节点(左旋)
-                rotateLeft(unBlanceNode);
+            // 右旋
+            return rotateRight(node);
+        } else if (bf > 1){
+            BlanceBinaryTreeNode rightNode = node.getRight();
+            if (rightNode.getBf() == -1) { // 右旋
+                node.setRight(rotateRight(rightNode));
             }
-        }*/
+            // 左旋
+            return rotateLeft(node);
+        }
+        return node;
     }
 
     /**
@@ -80,6 +70,9 @@ public class BlanceBinarySearchTree extends Node{
             BlanceBinaryTreeNode leftRightNode = leftNode.getRight();
             node.setLeft(leftRightNode);
             leftNode.setRight(node);
+            if (node == root) {
+                root = leftNode;
+            }
             return leftNode;
         }
         return null;
@@ -96,8 +89,49 @@ public class BlanceBinarySearchTree extends Node{
             BlanceBinaryTreeNode rightLeftNode = rightNode.getLeft();
             node.setRight(rightLeftNode);
             rightNode.setLeft(node);
+            if (node == root) {
+                root = rightNode;
+            }
             return rightNode;
         }
         return null;
+    }
+
+    /****************** 递归方式遍历节点 ************************/
+    public void display() {
+        System.out.print("pre:");
+        TraverseBinaryTreeUtil.preOrder(this.getRoot());
+        System.out.print("\nin:");
+        TraverseBinaryTreeUtil.inOrder(this.getRoot());
+        System.out.print("\npost:");
+        TraverseBinaryTreeUtil.postOrder(this.getRoot());
+    }
+    /****************** 递归方式遍历节点 ************************/
+
+    /****************** 非递归方式遍历节点 ************************/
+    public void displayWithStack() {
+        System.out.print("\npreOrderWithStack:");
+        TraverseBinaryTreeUtil.preOrderWithStack(this.getRoot());
+
+        System.out.print("\ninOrderWithStack:");
+        TraverseBinaryTreeUtil.inOrderWithStack(this.getRoot());
+
+        System.out.print("\npostOrderWithStack:");
+        TraverseBinaryTreeUtil.postOrderWithStack(this.getRoot());
+    }
+    /****************** 非递归方式遍历节点 ************************/
+
+    public static void main(String[] args) {
+        BlanceBinarySearchTree tree = new BlanceBinarySearchTree();
+        tree.insert(9);
+        tree.insert(5);
+        tree.insert(4);
+        tree.insert(8);
+        tree.insert(12);
+        tree.insert(15);
+        tree.insert(11);
+
+        tree.display();
+
     }
 }

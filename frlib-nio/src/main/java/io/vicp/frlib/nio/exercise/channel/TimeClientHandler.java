@@ -49,7 +49,7 @@ public class TimeClientHandler implements Runnable {
         }
         while (!stop) {
             try {
-                selector.select(1000);
+                selector.select();
                 Set<SelectionKey> selectedKeySet = selector.selectedKeys();
                 Iterator<SelectionKey> keyIterator = selectedKeySet.iterator();
                 SelectionKey selectionKey = null;
@@ -59,6 +59,7 @@ public class TimeClientHandler implements Runnable {
                     try {
                         handlerInput(selectionKey);
                     } catch (Exception e) {
+                        e.printStackTrace();
                         if (selectionKey != null) {
                             selectionKey.cancel();
                             if (selectionKey.channel() != null) {
@@ -92,20 +93,20 @@ public class TimeClientHandler implements Runnable {
     }
 
     private void doWrite(SocketChannel socketChannel) throws IOException{
-        byte[] req = "Query Time Order".getBytes();
-        ByteBuffer writeBuffer = ByteBuffer.allocate(req.length);
-        writeBuffer.put(req);
+        String message = new String("Query Time Order".getBytes(), "UTF-8");
+        ByteBuffer writeBuffer = ByteBuffer.allocate(message.length());
+        writeBuffer.put(message.getBytes());
         writeBuffer.flip();
         socketChannel.write(writeBuffer);
         if (!writeBuffer.hasRemaining()) {
-            System.out.println("Send order 2 server succeed.");
+            System.out.println("Send order to server succeed.");
         }
     }
 
     private void handlerInput(SelectionKey selectionKey) throws IOException{
         if (selectionKey.isValid()) {
             SocketChannel socketChannel = (SocketChannel) selectionKey.channel();
-            if (socketChannel.isConnected()) {
+            if (selectionKey.isConnectable()) {
                 if (socketChannel.finishConnect()) {
                     socketChannel.register(selector, SelectionKey.OP_READ);
                     doWrite(socketChannel);

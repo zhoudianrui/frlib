@@ -1,0 +1,60 @@
+syntax = "proto2";
+package org.jboss.protobuf.examples.localtime;
+
+// How to generate
+// ===============
+// $ protoc src/main/java/org/jboss/netty/example/localtime/LocalTimeProtocol.proto \
+//          --java_out=src/main/java
+//
+// Add @SuppressWarnings("all") to the generated code not to pollute IDE task list.
+
+option java_package = "io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock";
+option java_outer_classname = "LocalTimeProtocol";
+option optimize_for = SPEED;
+
+enum Continent {
+  AFRICA = 0;
+  AMERICA = 1;
+  ANTARCTICA = 2;
+  ARCTIC = 3;
+  ASIA = 4;
+  ATLANTIC = 5;
+  AUSTRALIA = 6;
+  EUROPE = 7;
+  INDIAN = 8;
+  MIDEAST = 9;
+  PACIFIC = 10;
+}
+
+message Location {
+  required Continent continent = 1;
+  required string city = 2;
+}
+
+message Locations {
+  repeated Location location = 1;
+}
+
+enum DayOfWeek {
+  SUNDAY = 1;
+  MONDAY = 2;
+  TUESDAY = 3;
+  WEDNESDAY = 4;
+  THURSDAY = 5;
+  FRIDAY = 6;
+  SATURDAY = 7;
+}
+
+message LocalTime {
+  required uint32 year = 1;
+  required uint32 month = 2;
+  required uint32 dayOfMonth = 3;
+  required DayOfWeek dayOfWeek = 4;
+  required uint32 hour = 5;
+  required uint32 minute = 6;
+  required uint32 second = 7;
+}
+
+message LocalTimes {
+  repeated LocalTime localTime = 1;
+}

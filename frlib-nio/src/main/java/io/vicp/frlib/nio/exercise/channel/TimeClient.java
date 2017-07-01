@@ -8,7 +8,7 @@ import org.apache.commons.lang.ArrayUtils;
 public class TimeClient {
 
     public static void main(String[] args) {
-        int port = 6667;
+        int port = 6666;
         if (!ArrayUtils.isEmpty(args)) {
             try {
                 port = Integer.parseInt(args[0]);

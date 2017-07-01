@@ -31,7 +31,7 @@ public class BusinessExceptionHandler implements HandlerExceptionResolver {
         userInfo.setUser(user);
         Date date = null;
         try {
-            date = DateUtil.convertStringDateWithDefault(null, null);
+            date = DateUtil.convertStringDateWithDefaultNow(null);
         } catch (ParseException e) {
             logger.warn("", e);
         }

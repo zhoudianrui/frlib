@@ -1,0 +1,13 @@
+io\vicp\frlib\gc\reference\UseReferenceQueue.class
+io\vicp\frlib\gc\reference\UseReferenceQueue$1.class
+io\vicp\frlib\gc\createinstance\Child.class
+io\vicp\frlib\gc\classloader\FileSystemClassLoader.class
+io\vicp\frlib\gc\reference\UseReferenceQueue$ReferencedObject.class
+io\vicp\frlib\gc\memory\BigMemoryAllocate.class
+io\vicp\frlib\gc\createinstance\GrandFather.class
+io\vicp\frlib\gc\createinstance\Father.class
+io\vicp\frlib\gc\memory\LongLifeTimeIntoOld.class
+io\vicp\frlib\gc\memory\MemoryAllocateProcess.class
+io\vicp\frlib\gc\memory\HandlePromotion.class
+io\vicp\frlib\gc\reference\PhantomAllocator.class
+io\vicp\frlib\gc\classloader\Sample.class

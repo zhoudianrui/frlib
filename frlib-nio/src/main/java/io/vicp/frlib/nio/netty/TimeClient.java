@@ -1,18 +1,9 @@
 package io.vicp.frlib.nio.netty;
 
-import io.netty.bootstrap.Bootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.nio.NioSocketChannel;
-
 /**
  * Created by zhoudr on 2017/3/10.
  */
-public class TimeClient {
+/*public class TimeClient {
 
     public void connect(int port, String host) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
@@ -43,4 +34,4 @@ public class TimeClient {
         int port = 5566;
         new TimeClient().connect(port, "127.0.0.1");
     }
-}
+}*/

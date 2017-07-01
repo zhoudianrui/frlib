@@ -46,7 +46,7 @@ public class BaseController {
                     if (StringUtils.isNotBlank(value)) {
                         userInfo = parseLoginCookie(value);
                         if (userInfo != null) {
-                            long hasLoginSeconds = DateUtil.getSecondsFromTimeToNow(userInfo.getLoginTime());
+                            long hasLoginSeconds = DateUtil.getIntervalSecondsBetweenDates(userInfo.getLoginTime(), new Date());
                             if (hasLoginSeconds > cookie.getMaxAge()) { // 登录时间超过cookie时长
                                 String msg = "用户未登录[id={0}]";
                                 String resultMsg = MessageFormat.format(msg, userInfo.getUser() == null ? -1 : userInfo.getUser().getId());
@@ -102,7 +102,7 @@ public class BaseController {
         userInfo.setUser(user);
         Date date = null;
         try {
-            date = DateUtil.convertStringDateWithDefault(null, null);
+            date = DateUtil.convertStringTimeWithDefaultNow(null);
         } catch (ParseException e) {
             logger.warn("", e);
         }
@@ -129,7 +129,7 @@ public class BaseController {
                         String destFile = uploadFileSavePath + multipartFile.getOriginalFilename();
                         IOUtil.copy(multipartFile.getBytes(), destFile);
                     } catch (IOException e) {
-                        logger.error("", e);
+                        logger.error(multipartFile.getOriginalFilename() + "上传失败：", e);
                     }
                 }
             }

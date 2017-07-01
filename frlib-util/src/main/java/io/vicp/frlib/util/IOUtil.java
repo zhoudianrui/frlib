@@ -5,7 +5,6 @@ import org.apache.commons.lang.StringUtils;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.MalformedURLException;
 import java.net.SocketAddress;
 import java.net.URL;
 import java.nio.ByteBuffer;
@@ -13,9 +12,13 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 流工具类
@@ -24,15 +27,19 @@ import java.util.*;
 public class IOUtil {
 
     public static void main(String[] args) {
-        Set<URL> urls = new HashSet<>();
+        /*Set<URL> urls = new HashSet<>();
         try {
             urls.add(new URL("http://www.baidu.com/"));
             urls.add(new URL("http://www.iwjw.com/"));
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        resolveWebPagesUseSelector(urls);
-
+        resolveWebPagesUseSelector(urls);*/
+        try {
+            copy("e:/eula.2052.txt", "d:/copy.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -137,15 +144,39 @@ public class IOUtil {
         FileChannel desc = null;
         try {
             ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
+            byteBuffer.flip();
             desc = FileChannel.open(Paths.get(destFile), StandardOpenOption.WRITE, StandardOpenOption.CREATE);
             desc.write(byteBuffer);
             desc.force(true);
-        } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             if (desc != null) {
                 desc.close();
             }
         }
     }
+
+    public static void copy(String src, String dest) throws IOException {
+        FileChannel srcChannel = null;
+        FileChannel destChannel = null;
+        try {
+            srcChannel = FileChannel.open(Paths.get(src), StandardOpenOption.READ);
+            destChannel = FileChannel.open(Paths.get(dest), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+            Charset charset = Charset.forName("UTF-8");
+            int readBytes = srcChannel.read(byteBuffer);
+            while (readBytes != -1) {
+                //destChannel.write(charset.decode(byteBuffer));
+                byteBuffer.clear();
+                readBytes = srcChannel.read(byteBuffer);
+            }
+        } finally {
+            if (srcChannel != null) {
+                srcChannel.close();
+            }
+            if (destChannel != null) {
+                destChannel.close();
+            }
+        }
+    }
+
 }

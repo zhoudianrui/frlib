@@ -1,0 +1,11 @@
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\createinstance\Child.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\memory\MemoryAllocateProcess.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\createinstance\Father.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\memory\BigMemoryAllocate.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\reference\PhantomAllocator.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\reference\UseReferenceQueue.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\classloader\FileSystemClassLoader.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\memory\HandlePromotion.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\memory\LongLifeTimeIntoOld.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\classloader\Sample.java
+E:\github\frlib\frlib-gc\src\main\java\io\vicp\frlib\gc\createinstance\GrandFather.java

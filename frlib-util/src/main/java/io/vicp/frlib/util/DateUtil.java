@@ -1,7 +1,5 @@
 package io.vicp.frlib.util;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,17 +12,22 @@ import java.util.Date;
 public class DateUtil {
 
     /**
+     * 一天中的秒数
+     */
+    public static final int SECONDS_IN_ONE_DAY = 86400;
+
+    /**
      * 获取指定时间与当前时间相隔的秒数
      *
-     * @param date
+     * @param begin：开始时间
+     * @param end：结束时间
      * @return
      */
-    public static long getSecondsFromTimeToNow(Date date) {
-        if (date == null) {
-            return 0;
+    public static final Long getIntervalSecondsBetweenDates(Date begin, Date end) {
+        if (begin == null || end == null) {
+            return 0L;
         }
-        Date now = new Date();
-        long millSeconds = now.getTime() - date.getTime();
+        long millSeconds = end.compareTo(begin) > 0 ? end.getTime() - begin.getTime() : begin.getTime() - end.getTime();
         return millSeconds / 1000;
     }
 
@@ -32,36 +35,30 @@ public class DateUtil {
      * 将日期字符串转换成指定格式的日期，默认返回当前日期
      *
      * @param date
-     * @param simpleDateFormat
      * @return
      */
-    public static Date convertStringDateWithDefault(String date, SimpleDateFormat simpleDateFormat) throws ParseException{
-        Date defaultDate = new Date();
-        if (simpleDateFormat == null) {
-            simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        }
-        if (StringUtils.isBlank(date)) {
-            date = simpleDateFormat.format(defaultDate);
-        }
-        return convertStringTimeWithDefault(date, simpleDateFormat);
+    public static final Date convertStringDateWithDefaultNow(String date) throws ParseException{
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return converStringToDate(date, simpleDateFormat);
     }
 
     /**
      * 将时间字符串转换成指定格式的时间，默认返回当前时间
      *
      * @param dateTime
-     * @param simpleDateFormat
      * @return
      */
-    public static Date convertStringTimeWithDefault(String dateTime, SimpleDateFormat simpleDateFormat) throws ParseException{
-        Date defaultDate = new Date();
-        if (simpleDateFormat == null) {
-            simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final Date convertStringTimeWithDefaultNow(String dateTime) throws ParseException{
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return converStringToDate(dateTime, simpleDateFormat);
+    }
+
+    private static final Date converStringToDate(String date, SimpleDateFormat simpleDateFormat) throws ParseException{
+        final Date defaultDate = new Date();
+        if (date == null) {
+            return defaultDate;
         }
-        if (StringUtils.isBlank(dateTime)) {
-            dateTime = simpleDateFormat.format(defaultDate);
-        }
-        return simpleDateFormat.parse(dateTime);
+        return simpleDateFormat.parse(date);
     }
 
     /**
@@ -70,9 +67,9 @@ public class DateUtil {
      * @param date
      * @return
      */
-    public static Date getEarlliestTime(Date date) {
+    public static final Date getEarlliestTime(Date date) {
         if (date == null) {
-            return null;
+            date = new Date();
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -88,9 +85,9 @@ public class DateUtil {
      * @param date
      * @return
      */
-    public static Date getLatestTime(Date date) {
+    public static final Date getLatestTime(Date date) {
         if (date == null) {
-            return null;
+            date = new Date();
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -100,11 +97,27 @@ public class DateUtil {
         return calendar.getTime();
     }
 
+    public static final Long getIntervalDaysBetweenDates(Date beginDate, Date endDate) {
+        Date beginTime = getEarlliestTime(beginDate);
+        Date endTime = getEarlliestTime(endDate);
+        long intervalSeconds = getIntervalSecondsBetweenDates(beginTime, endTime);
+        long intervalDays = intervalSeconds / SECONDS_IN_ONE_DAY;
+        return intervalDays;
+    }
+
+    public static final Long getIntervalWeeksBetweenDates(Date beginDate, Date endDate) {
+        long intervalDays = getIntervalDaysBetweenDates(beginDate, endDate);
+        long intervalWeeks = intervalDays / 7;
+        return intervalWeeks;
+    }
+
     public static void main(String[] args) {
-        String dateString = "2016-12-29 12:00:00";
         try {
-            Date date = convertStringDateWithDefault(dateString, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
-            System.out.println(date);
+            Date beginDate = convertStringTimeWithDefaultNow("2016-12-15 00:00:00");
+            Date endDate = convertStringTimeWithDefaultNow("2017-08-31 00:00:00");
+            long intervalDays = getIntervalDaysBetweenDates(beginDate, endDate);
+            long intervalWeeks = getIntervalWeeksBetweenDates(beginDate, endDate);
+            System.out.println("intervalDays:" + intervalDays + ",intervalWeeks:" + intervalWeeks);
         } catch (ParseException e) {
             e.printStackTrace();
         }

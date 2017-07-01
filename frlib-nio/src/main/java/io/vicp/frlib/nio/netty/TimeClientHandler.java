@@ -1,15 +1,9 @@
 package io.vicp.frlib.nio.netty;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandlerAdapter;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPromise;
-
 /**
  * Created by zhoudr on 2017/3/10.
  */
-public class TimeClientHandler extends ChannelHandlerAdapter {
+/*public class TimeClientHandler extends ChannelHandlerAdapter {
 
     private final ByteBuf firstMessage;
 
@@ -55,4 +49,4 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
         System.out.println("Unexpected exception from downstream : " + cause.getMessage());
         ctx.close();
     }
-}
+}*/

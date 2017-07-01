@@ -1,17 +1,9 @@
 package io.vicp.frlib.nio.netty;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandlerAdapter;
-import io.netty.channel.ChannelHandlerContext;
-
-import java.util.Date;
-
-
 /**
  * Created by zhoudr on 2017/3/10.
  */
-public class TimeServerHandler extends ChannelHandlerAdapter{
+/*public class TimeServerHandler extends ChannelHandlerAdapter{
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
@@ -40,4 +32,4 @@ public class TimeServerHandler extends ChannelHandlerAdapter{
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         ctx.close();
     }
-}
+}*/

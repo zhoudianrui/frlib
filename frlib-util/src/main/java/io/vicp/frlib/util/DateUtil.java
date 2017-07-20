@@ -9,7 +9,7 @@ import java.util.Date;
  * 时间服务类
  * Created by zhoudr on 2016/12/27.
  */
-public class DateUtil {
+public final class DateUtil {
 
     /**
      * 一天中的秒数
@@ -23,7 +23,7 @@ public class DateUtil {
      * @param end：结束时间
      * @return
      */
-    public static final Long getIntervalSecondsBetweenDates(Date begin, Date end) {
+    public static Long getIntervalSecondsBetweenDates(Date begin, Date end) {
         if (begin == null || end == null) {
             return 0L;
         }
@@ -37,7 +37,7 @@ public class DateUtil {
      * @param date
      * @return
      */
-    public static final Date convertStringDateWithDefaultNow(String date) throws ParseException{
+    public static Date convertStringDateWithDefaultNow(String date) throws ParseException{
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return converStringToDate(date, simpleDateFormat);
     }
@@ -48,12 +48,12 @@ public class DateUtil {
      * @param dateTime
      * @return
      */
-    public static final Date convertStringTimeWithDefaultNow(String dateTime) throws ParseException{
+    public static Date convertStringTimeWithDefaultNow(String dateTime) throws ParseException{
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return converStringToDate(dateTime, simpleDateFormat);
     }
 
-    private static final Date converStringToDate(String date, SimpleDateFormat simpleDateFormat) throws ParseException{
+    private static Date converStringToDate(String date, SimpleDateFormat simpleDateFormat) throws ParseException{
         final Date defaultDate = new Date();
         if (date == null) {
             return defaultDate;
@@ -62,12 +62,28 @@ public class DateUtil {
     }
 
     /**
+     * 转换日期至指定格式的字符串
+     * @param date
+     * @param simpleDateFormat
+     * @return
+     */
+    public static String converDateToString(Date date, SimpleDateFormat simpleDateFormat) {
+        if (date == null) {
+            throw new RuntimeException("date is null");
+        }
+        if (simpleDateFormat == null) {
+            simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        }
+        return simpleDateFormat.format(date);
+    }
+
+    /**
      * 获取一天中最早的时间
      *
      * @param date
      * @return
      */
-    public static final Date getEarlliestTime(Date date) {
+    public static Date getEarlliestTime(Date date) {
         if (date == null) {
             date = new Date();
         }
@@ -85,7 +101,7 @@ public class DateUtil {
      * @param date
      * @return
      */
-    public static final Date getLatestTime(Date date) {
+    public static Date getLatestTime(Date date) {
         if (date == null) {
             date = new Date();
         }
@@ -97,18 +113,16 @@ public class DateUtil {
         return calendar.getTime();
     }
 
-    public static final Long getIntervalDaysBetweenDates(Date beginDate, Date endDate) {
+    public static Long getIntervalDaysBetweenDates(Date beginDate, Date endDate) {
         Date beginTime = getEarlliestTime(beginDate);
         Date endTime = getEarlliestTime(endDate);
         long intervalSeconds = getIntervalSecondsBetweenDates(beginTime, endTime);
-        long intervalDays = intervalSeconds / SECONDS_IN_ONE_DAY;
-        return intervalDays;
+        return intervalSeconds / SECONDS_IN_ONE_DAY;
     }
 
-    public static final Long getIntervalWeeksBetweenDates(Date beginDate, Date endDate) {
+    public static Long getIntervalWeeksBetweenDates(Date beginDate, Date endDate) {
         long intervalDays = getIntervalDaysBetweenDates(beginDate, endDate);
-        long intervalWeeks = intervalDays / 7;
-        return intervalWeeks;
+        return intervalDays / 7;
     }
 
     public static void main(String[] args) {

@@ -3,6 +3,7 @@ package io.vicp.frlib.util;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
@@ -12,7 +13,6 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.Charset;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
@@ -156,19 +156,61 @@ public class IOUtil {
     }
 
     public static void copy(String src, String dest) throws IOException {
+        if (!new File(src).exists()) {
+            throw new IOException("source file does not exist");
+        }
         FileChannel srcChannel = null;
         FileChannel destChannel = null;
         try {
             srcChannel = FileChannel.open(Paths.get(src), StandardOpenOption.READ);
             destChannel = FileChannel.open(Paths.get(dest), StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-            ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-            Charset charset = Charset.forName("UTF-8");
+            /***************** 方式一：采用传统的读写方式 ************************/
+            /*ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
             int readBytes = srcChannel.read(byteBuffer);
             while (readBytes != -1) {
-                //destChannel.write(charset.decode(byteBuffer));
+                byteBuffer.flip();
+                destChannel.write(byteBuffer);
                 byteBuffer.clear();
                 readBytes = srcChannel.read(byteBuffer);
+            }*/
+            /***************** 方式二：采用系统工具类 ************************/
+            destChannel.transferFrom(srcChannel, 0, new File(src).length());
+        } finally {
+            if (srcChannel != null) {
+                srcChannel.close();
             }
+            if (destChannel != null) {
+                destChannel.close();
+            }
+        }
+    }
+
+    /**
+     * 文本追加
+     * @param src 源文件
+     * @param dest 目标文件
+     * @throws IOException
+     */
+    public static void append(String src, String dest) throws IOException{
+        if (!new File(src).exists() || !new File(dest).exists()) {
+            throw new IOException("source or destination file does not exist");
+        }
+        FileChannel srcChannel = null;
+        FileChannel destChannel = null;
+        try {
+            srcChannel = FileChannel.open(Paths.get(src), StandardOpenOption.READ);
+            destChannel = FileChannel.open(Paths.get(dest), StandardOpenOption.APPEND);
+            /***************** 方式一：采用传统的读写方式 ************************/
+            /*ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+            int readBytes = srcChannel.read(byteBuffer);
+            while (readBytes != -1) {
+                byteBuffer.flip();
+                destChannel.write(byteBuffer);
+                byteBuffer.clear();
+                readBytes = srcChannel.read(byteBuffer);
+            }*/
+            /***************** 方式二：采用系统工具类 ************************/
+            destChannel.transferFrom(srcChannel, new File(dest).length(), new File(src).length());
         } finally {
             if (srcChannel != null) {
                 srcChannel.close();

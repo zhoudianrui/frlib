@@ -1,9 +1,13 @@
 package io.vicp.frlib.nio.netty_3.serializer;
 
-import org.jboss.netty.buffer.ChannelBuffer;
-
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jboss.netty.buffer.ChannelBuffer;
 
 /**
  * <p>序列化<p>

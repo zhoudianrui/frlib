@@ -23,6 +23,7 @@
         <module>../frlib-dp</module>
         <module>../frlib-nio</module>
         <module>../frlib-web</module>
+        <module>../frlib-chat</module>
     </modules>
 
     <properties>

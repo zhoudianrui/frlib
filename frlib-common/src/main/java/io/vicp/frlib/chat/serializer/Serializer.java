@@ -1,15 +1,13 @@
 package io.vicp.frlib.chat.serializer;
 
+import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
+
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 /**
  * <p>序列化<p>
@@ -185,7 +183,7 @@ public abstract class Serializer {
     }
 
     protected void writeString(String value) {
-        if (StringUtils.isEmpty(value)) {
+        if (value == null || "".equals(value)) {
             writeShort(SHORT_ZERO);
         } else {
             byte[] data = value.getBytes(Charset.forName(DEFAULT_CHARSET_NAME));
@@ -195,7 +193,7 @@ public abstract class Serializer {
     }
 
     protected <T> void writeList(List<T> list) {
-        if (CollectionUtils.isEmpty(list)) {
+        if (list == null || list.size() == 0) {
             this.writeShort(SHORT_ZERO);
         } else {
             this.writeShort((short)list.size());

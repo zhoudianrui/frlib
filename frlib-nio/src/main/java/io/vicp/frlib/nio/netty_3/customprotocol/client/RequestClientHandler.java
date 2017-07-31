@@ -3,9 +3,9 @@ package io.vicp.frlib.nio.netty_3.customprotocol.client;
 import io.vicp.frlib.nio.netty_3.Constants;
 import io.vicp.frlib.nio.netty_3.customprotocol.entity.Player;
 import io.vicp.frlib.nio.netty_3.customprotocol.entity.Request;
-import io.vicp.frlib.nio.netty_3.customprotocol.entity.Response;
 import io.vicp.frlib.nio.netty_3.serializer.BufferFactory;
 import io.vicp.frlib.util.DateUtil;
+import io.vicp.frlib.nio.netty_3.customprotocol.entity.Response;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.*;
 

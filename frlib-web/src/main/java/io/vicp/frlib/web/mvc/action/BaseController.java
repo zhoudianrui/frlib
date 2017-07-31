@@ -8,7 +8,7 @@ import io.vicp.frlib.web.exception.BusinessException;
 import io.vicp.frlib.web.mvc.model.User;
 import io.vicp.frlib.web.mvc.model.UserInfo;
 import io.vicp.frlib.web.mvc.model.UserStatus;
-import io.vicp.frlib.web.util.*;
+import io.vicp.frlib.web.util.Constants;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;

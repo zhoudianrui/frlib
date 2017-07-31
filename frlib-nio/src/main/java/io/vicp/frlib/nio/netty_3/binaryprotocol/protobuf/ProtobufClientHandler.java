@@ -1,7 +1,7 @@
 package io.vicp.frlib.nio.netty_3.binaryprotocol.protobuf;
 
 import org.jboss.netty.channel.*;
-import io.vicp.frlib.nio.netty_3.binaryprotocol.protobuf.AddressBookProtocol.*;
+
 /**
  * description :
  * user : zhoudr

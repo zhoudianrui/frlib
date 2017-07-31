@@ -1,6 +1,11 @@
 package io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock;
 
-import io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock.LocalTimeProtocol.*;
+import io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock.LocalTimeProtocol.Continent;
+import io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock.LocalTimeProtocol.LocalTime;
+import io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock.LocalTimeProtocol.LocalTimes;
+import io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock.LocalTimeProtocol.Location;
+import io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock.LocalTimeProtocol.Locations;
+import io.vicp.frlib.nio.netty_3.binaryprotocol.worldclock.LocalTimeProtocol.Locations.Builder;
 import org.jboss.netty.channel.*;
 
 import java.util.ArrayList;
@@ -25,12 +30,12 @@ public class LocalTimeClientHandler extends SimpleChannelUpstreamHandler {
     private volatile Channel channel;
 
     public List<String> getLocalTimes(Collection<String> cities) {
-        Locations.Builder builder = Locations.newBuilder();
+        Builder builder = Locations.newBuilder();
         for (String city : cities) {
             String[] components = DELIMITER.split(city);
             builder.addLocation(Location.newBuilder()
-                    .setContinent(Continent.valueOf(components[0].toUpperCase()))
-                    .setCity(components[1]).build());
+                                        .setContinent(Continent.valueOf(components[0].toUpperCase()))
+                                        .setCity(components[1]).build());
         }
         Locations request = builder.build();
         channel.write(request);

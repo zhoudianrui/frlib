@@ -1,12 +1,12 @@
 package io.vicp.frlib.nio.netty_3.binaryprotocol.protobuf;
 
+import io.vicp.frlib.nio.netty_3.binaryprotocol.protobuf.AddressBookProtocol.AddressBook;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.handler.codec.protobuf.ProtobufDecoder;
 import org.jboss.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32FrameDecoder;
-import io.vicp.frlib.nio.netty_3.binaryprotocol.protobuf.AddressBookProtocol.*;
 import org.jboss.netty.handler.codec.protobuf.ProtobufVarint32LengthFieldPrepender;
 
 /**

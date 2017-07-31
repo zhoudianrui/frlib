@@ -1,7 +1,7 @@
 package io.vicp.frlib.nio.netty_3.customprotocol.code;
 
-import io.vicp.frlib.nio.netty_3.Constants;
 import io.vicp.frlib.nio.netty_3.customprotocol.entity.Request;
+import io.vicp.frlib.nio.netty_3.Constants;
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;

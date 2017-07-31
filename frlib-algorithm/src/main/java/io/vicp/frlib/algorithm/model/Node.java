@@ -1,7 +1,5 @@
 package io.vicp.frlib.algorithm.model;
 
-import lombok.Data;
-
 /**
  * Created by zhoudr on 2017/3/23.
  */
